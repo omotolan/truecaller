@@ -22,4 +22,15 @@ public class ContactServiceImpl implements ContactService {
         return contactRepository.findById(i);
 
     }
+
+    @Override
+    public void deleteContact(Contact contact) {
+        contactRepository.delete(contact);
+
+    }
+
+    @Override
+    public void updateContact(Contact contact, Contact contact1) {
+        contactRepository.update(contact, contact1);
+    }
 }

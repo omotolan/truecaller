@@ -23,14 +23,12 @@ public class ContactRepositoryImpl implements ContactRepository {
 
     @Override
     public Contact findByFirstName(String firstName) {
-
         for (Contact contact : contacts) {
 
             if (firstName.equalsIgnoreCase(contact.getFirstName())) {
                 return contact;
 
-            }
-            else throw new NullPointerException("Name does not exist");
+            } else throw new NullPointerException("Name does not exist");
         }
         return null;
     }
@@ -38,5 +36,58 @@ public class ContactRepositoryImpl implements ContactRepository {
     @Override
     public Contact findById(int id) {
         return contacts.get(id - 1);
+    }
+
+    @Override
+    public Contact delete(String firstName) {
+        Contact contact;
+        for (int i = 0; i < contacts.size(); i++) {
+            contact = contacts.get(i);
+            if (contact.getFirstName().equalsIgnoreCase(firstName)) {
+                contacts.remove(contact);
+                return contact;
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public Contact delete(Contact contact) {
+        Contact contact1;
+        for (int i = 0; i < contacts.size(); i++) {
+            contact1 = contacts.get(i);
+            if (contact.equals(contact1)) {
+                contacts.remove(contact);
+                return contact1;
+            }
+
+
+        }
+        return null;
+    }
+
+    @Override
+    public Contact update(String oldFirstName, String newFirstName) {
+
+        Contact contact = findByFirstName(oldFirstName);
+        contact.setFirstName(newFirstName);
+
+        return contact;
+    }
+
+    @Override
+    public Contact update(Contact oldContact, Contact newContact) {
+        Contact contact1;
+        for (int i = 0; i < contacts.size(); i++) {
+            contact1 = contacts.get(i);
+            if (oldContact.equals(contact1)) {
+                contacts.set(i, newContact);
+
+                return newContact;
+            }
+
+        }
+        return null;
     }
 }

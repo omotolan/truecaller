@@ -6,4 +6,8 @@ public interface ContactService {
     void addContact(String firstName, String lastName, String phoneNumber);
 
     Contact findById(int i);
+
+    void deleteContact(Contact Contact);
+
+    void updateContact(Contact contact, Contact contact1);
 }
