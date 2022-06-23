@@ -30,13 +30,22 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public void updateContact(Contact contact, Contact contact1) {
+    public void updateContact(Contact contact, String firstName, String lastname, String phoneNumber) {
 
+        if (firstName.length() != 0) {
+            contact.setFirstName(firstName);
+        } else if (lastname.length() != 0) {
+            contact.setLastName(lastname);
+        } else if (phoneNumber.length() != 0) {
+            contact.setPhoneNumber(phoneNumber);
+        }
+        contactRepository.save(contact);
     }
+
 
     @Override
     public List<Contact> findContact(String value) {
-      return   contactRepository.findContact(value);
+        return contactRepository.findContact(value);
 
     }
 }

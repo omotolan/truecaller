@@ -58,8 +58,12 @@ public class ContactServiceImplTest {
         contactService.addContact("love", "bool", "1234");
         contactService.addContact("alakija", "bool", "1234");
         Contact contact = contactService.findById(2);
-        Contact contact1 = new Contact("air", "omo", "1234");
-        contactService.updateContact(contact, contact1);
+
+        contactService.updateContact(contact,"bunmi", "", "");
+
+        List<Contact> contact1 = contactService.findContact("bunmi");
+        assertEquals("sd", contact1.toString());
+
         Contact contact2 = contactService.findById(2);
         assertEquals("air", contact2.getFirstName());
         assertEquals("omo", contact2.getLastName());

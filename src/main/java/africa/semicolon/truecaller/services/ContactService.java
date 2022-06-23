@@ -11,7 +11,7 @@ public interface ContactService {
 
     void deleteContact(Contact Contact);
 
-    void updateContact(Contact contact, Contact contact1);
+    void updateContact(Contact contact, String firstName, String lastname, String phoneNumber);
 
     List<Contact> findContact(String value);
 }

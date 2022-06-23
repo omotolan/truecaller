@@ -11,17 +11,12 @@ public class ContactRepositoryImpl implements ContactRepository {
 
     @Override
     public Contact save(Contact contact) {
-//        int n = 0;
-//        Contact contact1;
-//        for (int i = 0; i < contacts.size(); i++) {
-//            contact1 = contacts.get(i);
-//            n = contact1.getId();
-//            if (n > 0) {
-//                contacts.set(n, contact);
-//            }
-//        }
-        contact.setId(contacts.size() + 1);
-        contacts.add(contact);
+        if (contact.getId() == 0) {
+            contact.setId(contacts.size() + 1);
+            contacts.add(contact);
+        } else {
+            contacts.set(contact.getId() - 1, contact);
+        }
 
         return contact;
     }
@@ -57,10 +52,9 @@ public class ContactRepositoryImpl implements ContactRepository {
             contact1 = contacts.get(i);
             if (contact.equals(contact1)) {
                 contacts.remove(contact);
-                return contact1;
             }
         }
-        return null;
+        return contact1;
     }
 
 }
